@@ -4,6 +4,9 @@
 <div class="container mt-5">
     <h1 class="mb-4">Usuarios Registrados</h1>
 
+    <a href="{{ route('categoria.index') }}" class="btn btn-primary">Ir a Categorias</a>
+
+
     @if (!empty($users))
         <table class="table table-bordered">
             <thead>
