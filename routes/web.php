@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProductoConMesa;
+use App\Http\Controllers\MesaController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -43,7 +44,20 @@ Route::post('/login-post', [AuthController::class, 'login'])->name('login.post')
      // Eliminar datos
      Route::delete('/producto/delete/{id}', [ProductoController::class, 'deleteData'])->name('producto.destroy');
 //----------------------------------------------------------------------------------------------------------------------//
-
+ // Rutas de mantenimiento de Mesas
+    //Mostar index
+    Route::get('/mesa/index', [MesaController::class, 'getMesas'])->name('mesa.index');
+    // Mostrar formulario de creación
+    Route::get('/mesa/create', [MesaController::class, 'createForm'])->name('mesa.create');
+     // Procesar formulario de creación
+     Route::post('/mesa/store', [MesaController::class, 'storeData'])->name('mesa.store');
+     // Mostrar formulario de edición
+    Route::get('/mesa/edit/{id}', [MesaController::class, 'editForm'])->name('mesa.edit');
+    // Procesar formulario de edición
+    Route::put('/mesa/update/{id}', [MesaController::class, 'updateData'])->name('mesa.update');
+     // Eliminar datos
+     Route::delete('/mesa/delete/{id}', [MesaController::class, 'deleteData'])->name('mesa.destroy');
+//----------------------------------------------------------------------------------------------------------------------//
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     

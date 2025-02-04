@@ -6,7 +6,11 @@
 
     <a href="{{ route('categoria.index') }}" class="btn btn-primary">Ir a Categorias</a>
 
-    <a href="{{ route('producto.index') }}" class="btn btn-primary">Ir a Categorias</a>
+    <a href="{{ route('producto.index') }}" class="btn btn-primary">Ir a Productos</a>
+
+    <a href="{{ route('mesa.index') }}" class="btn btn-primary">Ir a Mesas</a>
+
+</hr>
     
     @if (!empty($users))
         <table class="table table-bordered">
