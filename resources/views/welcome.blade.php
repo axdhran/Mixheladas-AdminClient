@@ -6,7 +6,8 @@
 
     <a href="{{ route('categoria.index') }}" class="btn btn-primary">Ir a Categorias</a>
 
-
+    <a href="{{ route('producto.index') }}" class="btn btn-primary">Ir a Categorias</a>
+    
     @if (!empty($users))
         <table class="table table-bordered">
             <thead>

@@ -11,18 +11,23 @@
 </head>
 <body>
     <!-- Barra de navegación -->
-    <nav>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Contacto</a></li>
-            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MixHeladas</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit">Cerrar sesión</button>
             </form>
-        </ul>
+        </div>
+      </div>
     </nav>
+    
 
+   
     <!-- Contenido principal -->
     <div class="container">
         @yield('content') <!-- Aquí se inyectará el contenido específico de cada vista -->
@@ -30,7 +35,7 @@
 
     <!-- Pie de página -->
     <footer>
-        <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}</p>
+        <p>&copy; {{ date('Y') }} {{ config('osmmany', 'Osmany/Adrian') }}</p>
     </footer>
 
     <!-- Vincula tu archivo de JS -->
