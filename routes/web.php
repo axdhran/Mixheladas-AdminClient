@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoConMesa;
 use App\Http\Controllers\MesaController;
+use App\Http\Controllers\PedidoController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -58,6 +60,11 @@ Route::post('/login-post', [AuthController::class, 'login'])->name('login.post')
      // Eliminar datos
      Route::delete('/mesa/delete/{id}', [MesaController::class, 'deleteData'])->name('mesa.destroy');
 //----------------------------------------------------------------------------------------------------------------------//
+ // Rutas de mantenimiento de Pedidos
+ // Ruta para mostrar el formulario de creación de pedidos
+ Route::get('/pedido/crear', [PedidoController::class, 'createForm'])->name('pedido.create');
+ // Ruta para procesar el envío del formulario
+ Route::post('/pedido', [PedidoController::class, 'store'])->name('pedido.store');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     

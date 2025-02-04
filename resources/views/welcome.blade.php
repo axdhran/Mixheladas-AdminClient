@@ -10,6 +10,8 @@
 
     <a href="{{ route('mesa.index') }}" class="btn btn-primary">Ir a Mesas</a>
 
+    <a href="{{ route('pedido.create') }}" class="btn btn-primary">Crear pedido</a>
+
 </hr>
     
     @if (!empty($users))
