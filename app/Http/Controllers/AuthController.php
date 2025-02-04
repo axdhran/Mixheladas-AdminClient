@@ -21,29 +21,39 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
-    
-        // URL de la API que utiliza Sanctum
-        $apiUrl = 'http://127.0.0.1:8000/api/login'; // Ajusta según la URL de tu API
-    
-        // Realiza la solicitud HTTP
+
+        $apiUrl = 'http://127.0.0.1:8000/api/login';
+
         $response = Http::post($apiUrl, $credentials);
-    
-        // Verifica si la respuesta fue exitosa
+
         if ($response->successful()) {
             $responseData = $response->json();
-            
-            if (isset($responseData['token'])) {
+
+            if (isset($responseData['token'], $responseData['role'])) {
                 $token = $responseData['token'];
-                session(['sanctum_token' => $token]);
-    
-                // Redirige al usuario después de iniciar sesión
-                return redirect()->route('user');
+                $role = $responseData['role'];
+
+                // Almacena el token y el rol en la sesión actual
+                session([
+                    'sanctum_token' => $token,
+                    'role' => $role,
+                ]);
+
+                // Redirigir según el rol (aca se va redirigir cuando ya las vistas esten definidas)
+                // Ejemplo: si es admin que lo mande a la parte administrativa, si es cocinero o mesero a sus vistas correspondientes
+                if ($role == 'admin') {
+                    return redirect()->route('categorias.index');
+                } elseif ($role == 'mesero') {
+                    return redirect()->route('mesas.index');
+                } else {
+                    return redirect()->route('home');
+                }
             }
         }
-    
+
         // Maneja los errores si no se recibió un token
         return back()->withErrors([
-            'email' => 'Las credenciales no son correctas o la API no devolvió un token.',
+            'error' => 'Las credenciales no son correctas o la API no devolvió un token.',
         ]);
     }
 
