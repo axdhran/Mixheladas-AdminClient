@@ -12,6 +12,8 @@
 
     <a href="{{ route('pedido.create') }}" class="btn btn-primary">Crear pedido</a>
 
+    <a href="{{ route('pedido.index') }}" class="btn btn-primary">Ver pedido</a>
+
 </hr>
     
     @if (!empty($users))

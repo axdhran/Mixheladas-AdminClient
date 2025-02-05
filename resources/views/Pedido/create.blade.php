@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('content') <!-- Define el contenido de la página -->
+@section('content') 
     <h1>Crear Pedido</h1>
 
     @if(session('success'))

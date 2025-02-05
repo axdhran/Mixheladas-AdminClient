@@ -64,6 +64,9 @@ class AuthController extends Controller
         Cookie::forget('sanctum_token');
         Session::forget('sanctum_token');
 
+        // Redirige al usuario después de iniciar sesión
+        return redirect()->route('login');
+
         // Responder con un mensaje de cierre de sesión exitoso
         return response()->json(['message' => 'Cierre de sesión exitoso.'], 200);
     }

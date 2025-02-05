@@ -63,6 +63,17 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
      // Eliminar datos
      Route::delete('/mesa/delete/{id}', [MesaController::class, 'deleteData'])->name('mesa.destroy');
 
+//----------------------------------------------------------------------------------------------------------------------//
+ // Rutas de mantenimiento de Pedidos
+     //Mostar index
+     Route::get('/pedido/index', [PedidoController::class, 'getPedidos'])->name('pedido.index');
+     // Ruta para mostrar el formulario de creación de pedidos
+     Route::get('/pedido/crear', [PedidoController::class, 'createForm'])->name('pedido.create');
+     // Ruta para procesar el envío del formulario
+     Route::post('/pedido', [PedidoController::class, 'store'])->name('pedido.store');
+     //Ruta para actualizar el estado 
+     Route::patch('/pedido/update-estado/{id}', [PedidoController::class, 'updateEstado']);
+
      // Subgrupo para MESEROS
      Route::middleware([CheckRole::class . ':mesero'])->group(function () {
           // Pone aca las rutas que solo podra acceder un mesero
