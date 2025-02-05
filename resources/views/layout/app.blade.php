@@ -32,7 +32,7 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-warning">
   <div class="container-fluid">
-     <a class="navbar-brand" href="#">
+     <a class="navbar-brand">
       <img src="{{ asset('img/IMG_8218.JPG') }}" alt="Logo" style="width:40px;" class="rounded-pill"> 
     </a>
     <a class="navbar-brand" href="javascript:void(0)">MIXHELADAS</a>
