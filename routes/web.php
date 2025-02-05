@@ -14,7 +14,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login'); // Muestra el formulario
 Route::post('/login-post', [AuthController::class, 'login'])->name('login.post'); // Valida el login
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Grupo para ADMIN (acceso total)
 Route::middleware([CheckRole::class . ':admin'])->group(function () {
@@ -63,8 +63,8 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
      // Eliminar datos
      Route::delete('/mesa/delete/{id}', [MesaController::class, 'deleteData'])->name('mesa.destroy');
 
-//----------------------------------------------------------------------------------------------------------------------//
- // Rutas de mantenimiento de Pedidos
+     //----------------------------------------------------------------------------------------------------------------------//
+     // Rutas de mantenimiento de Pedidos
      //Mostar index
      Route::get('/pedido/index', [PedidoController::class, 'getPedidos'])->name('pedido.index');
      // Ruta para mostrar el formulario de creación de pedidos

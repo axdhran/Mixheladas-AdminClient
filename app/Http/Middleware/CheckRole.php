@@ -4,21 +4,25 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class CheckRole
 {
-    public function handle($request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $role)
     {
-        // Obtén el rol del usuario actual (almacenado en la sesión)
+        // Obtener el rol del usuario actual desde la sesión
         $userRole = session('role');
+        
+        // Si no hay rol en la sesión, redirige al login
+        if (!$userRole) {
+            return redirect()->route('login')->with('error', 'No estás autenticado');
+        }
 
-        // Si el rol del usuario no es el rol requerido, redirige a la página de error (aca podemos poner una pagina personalizada)
-        if ($role !== 'admin' && $userRole !== $role && $userRole !== 'admin') {
+        // Si el rol del usuario no es el rol requerido, redirige a la página de error
+        if ($userRole !== $role && $userRole !== 'admin') {
             return response()->view('errors.403', [], 403);
         }
 
-        // Si el rol coincide, o si es admin, deja pasar la solicitud
+        // Si el rol coincide o si es admin, permite el acceso
         return $next($request);
     }
 }
