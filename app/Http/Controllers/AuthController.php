@@ -42,9 +42,9 @@ class AuthController extends Controller
                 // Redirigir según el rol (aca se va redirigir cuando ya las vistas esten definidas)
                 // Ejemplo: si es admin que lo mande a la parte administrativa, si es cocinero o mesero a sus vistas correspondientes
                 if ($role == 'admin') {
-                    return redirect()->route('categoria.index');
+                    return redirect()->route('home');
                 } elseif ($role == 'mesero') {
-                    return redirect()->route('mesa.index');
+                    return redirect()->route('pedido.create');
                 // Agregar para las vistas de cocinero
                 } else {
                     return redirect()->route('home');
