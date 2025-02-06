@@ -18,7 +18,8 @@
                 <label for="descripcion">Descripción</label>
                 <textarea name="descripcion" id="descripcion" class="form-control" required>{{ $categoria['descripcion'] }}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <br>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
             <a href="{{ route('categoria.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     @else

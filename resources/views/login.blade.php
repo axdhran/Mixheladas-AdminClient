@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h3 class="text-center mb-4">Iniciar Sesión</h3>
@@ -30,9 +30,6 @@
                     </form>
                 </div>
             </div>
-            <p class="text-center mt-3">
-                ¿No tienes cuenta? <a href="#">Regístrate aquí</a>
-            </p>
         </div>
     </div>
 </div>

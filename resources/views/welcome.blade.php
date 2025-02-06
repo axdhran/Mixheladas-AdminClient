@@ -1,54 +1,44 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container mt-5">
-    <h1 class="mb-4">Usuarios Registrados</h1>
-
-    <a href="{{ route('categoria.index') }}" class="btn btn-primary">Ir a Categorias</a>
-
-    <a href="{{ route('producto.index') }}" class="btn btn-primary">Ir a Productos</a>
-
-    <a href="{{ route('mesa.index') }}" class="btn btn-primary">Ir a Mesas</a>
-
-    <a href="{{ route('pedido.create') }}" class="btn btn-primary">Crear pedido</a>
-
-    <a href="{{ route('pedido.index') }}" class="btn btn-primary">Ver pedido</a>
-
-</hr>
+<div class="d-flex flex-wrap justify-content-center gap-3 mt-4 mb-5">
+    <div class="card text-center" style="width:250px; height:290px">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <i class="fas fa-list-alt fa-3x"></i>
+            <h4 class="card-title mt-3">MANTENIMINETO CATEGORIA</h4>
+            <a href="{{ route('categoria.index') }}" class="btn btn-warning">Ir a Categorías</a>
+        </div>
+    </div>
     
-    @if (!empty($users))
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Teléfono</th>
-                    <th>DUI</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Fecha de Registro</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user['id'] }}</td>
-                        <td>{{ $user['name'] }}</td>
-                        <td>{{ $user['lastname'] }}</td>
-                        <td>{{ $user['phone'] }}</td>
-                        <td>{{ $user['dui'] }}</td>
-                        <td>{{ $user['email'] }}</td>
-                        <td>{{ $user['role'] ?? 'Sin rol' }}</td>
-                        <td>
-                            {{ $user['created_at'] ? \Carbon\Carbon::parse($user['created_at'])->format('d-m-Y H:i:s') : 'No registrado' }}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @else
-        <p>No hay usuarios disponibles.</p>
-    @endif
+    <div class="card text-center" style="width:250px; height:290px">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <i class="fas fa-box fa-3x"></i>
+            <h4 class="card-title mt-3">MANTENIMINETO PRODUCTO</h4>
+            <a href="{{ route('producto.index') }}" class="btn btn-warning">Ir a Productos</a>
+        </div>
+    </div>
+    
+    <div class="card text-center" style="width:250px; height:290px">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <i class="fas fa-chair fa-3x"></i>
+            <h4 class="card-title mt-3">MANTENIMINETO MESA</h4>
+            <a href="{{ route('mesa.index') }}" class="btn btn-warning">Ir a Mesas</a>
+        </div>
+</div>
+    <div class="card text-center" style="width:250px; height:290px">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <i class="fas fa-plus-circle fa-3x"></i>
+            <h4 class="card-title mt-3">CREAR PEDIDO</h4>
+            <a href="{{ route('pedido.create') }}" class="btn btn-warning">Crear Pedido</a>
+        </div>
+    </div>
+    
+    <div class="card text-center" style="width:250px; height:290px">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <i class="fas fa-eye fa-3x"></i>
+            <h4 class="card-title mt-3">PEDIDOS</h4>
+            <a href="{{ route('pedido.index') }}" class="btn btn-warning">Ver Pedidos</a>
+        </div>
+    </div>
 </div>
 @endsection

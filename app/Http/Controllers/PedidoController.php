@@ -37,6 +37,11 @@ class PedidoController extends Controller
 
             $mesas = $data['data'] ?? [];
 
+             // Filtra los pedidos para excluir los que tienen estado 'cancelado' o 'completado'
+            $mesas = array_filter($mesas, function ($pedido) {
+                return !in_array($pedido['estado'], ['cancelado', 'completado']);
+            });
+
             // Renderiza la vista y pasa los datos
             return view('pedido.index', ['data' => $mesas]);
 

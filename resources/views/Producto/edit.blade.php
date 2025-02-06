@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h1>Editar Producto</h1>
-    <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver</a>
 
     <form action="{{ route('producto.update', $producto['id']) }}" method="POST">
         @csrf
@@ -37,8 +36,10 @@
             </select>
         </div>
 
-
+<br>
         <button type="submit" class="btn btn-warning">Actualizar</button>
+    <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver</a>
+
     </form>
 </div>
 @endsection

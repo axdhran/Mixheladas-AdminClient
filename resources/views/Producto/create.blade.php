@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Crear Producto</h1>
-    <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver</a>
+   
 
     <form action="{{ route('producto.store') }}" method="POST">
         @csrf
@@ -31,8 +31,9 @@
                 @endforeach
             </select>
         </div>
-
+        <br>
         <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver</a>
     </form>
 </div>
 @endsection

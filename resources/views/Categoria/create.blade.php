@@ -13,7 +13,8 @@
             <label for="descripcion">Descripción</label>
             <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <br>
+        <button type="submit" class="btn btn-success">Guardar</button>
         <a href="{{ route('categoria.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>

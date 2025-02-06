@@ -4,6 +4,7 @@
 <div class="container">
     <h1>Lista de Productos</h1>
     <a href="{{ route('producto.create') }}" class="btn btn-success">Crear Producto</a>
+    <a href="{{ route('home') }}" class="btn btn-secondary">Volver</a>
 
     @if(count($data) > 0)
         <table class="table">

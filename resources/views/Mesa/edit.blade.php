@@ -24,8 +24,9 @@
                 <option value="reservada" {{ $mesa['estado'] == 'reservada' ? 'selected' : '' }}>Reservada</option>
             </select>
         </div>
-
-        <button type="submit" class="btn btn-success">Actualizar</button>
+<br>
+        <button type="submit" class="btn btn-warning">Actualizar</button>
+        <a href="{{ route('mesa.index') }}" class="btn btn-secondary">Volver</a>
     </form>
 </div>
 @endsection

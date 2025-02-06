@@ -3,7 +3,9 @@
 @section('content')
 <div class="container">
     <h1>Listado de Mesas</h1>
-    <a href="{{ route('mesa.create') }}" class="btn btn-primary">Crear Mesa</a>
+    <a href="{{ route('mesa.create') }}" class="btn btn-success">Crear Mesa</a>
+    <a href="{{ route('home') }}" class="btn btn-secondary">Volver</a>
+
     <table class="table">
         <thead>
             <tr>

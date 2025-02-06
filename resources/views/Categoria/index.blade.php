@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <h1>Categorías</h1>
-    <a href="{{ route('categoria.create') }}" class="btn btn-primary">Crear Nueva</a>
-
+    <a href="{{ route('categoria.create') }}" class="btn btn-success">Crear Nueva</a>
+    <a href="{{ route('home') }}" class="btn btn-secondary">Volver</a>
     @if(count($data) > 0)
         <table class="table mt-3">
             <thead>

@@ -8,7 +8,7 @@
         @foreach($data as $pedido)
         <div class="col-md-4 mb-4 pedido-card" data-id="{{ $pedido['id'] }}">
             <div class="card shadow">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-warning text-white">
                     <h5 class="mb-0">Pedido #{{ $pedido['id'] }}</h5>
                     <small>Mesa: {{ $pedido['mesa'] }}</small>
                 </div>
