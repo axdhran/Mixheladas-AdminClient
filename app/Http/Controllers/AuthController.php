@@ -45,7 +45,8 @@ class AuthController extends Controller
                     return redirect()->route('home');
                 } elseif ($role == 'mesero') {
                     return redirect()->route('pedido.create');
-                // Agregar para las vistas de cocinero
+                } elseif ($role == 'cocinero') {
+                    return redirect()->route('pedido.index');
                 } else {
                     return redirect()->route('home');
                 }

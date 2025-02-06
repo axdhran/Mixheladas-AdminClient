@@ -62,32 +62,24 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
      Route::put('/mesa/update/{id}', [MesaController::class, 'updateData'])->name('mesa.update');
      // Eliminar datos
      Route::delete('/mesa/delete/{id}', [MesaController::class, 'deleteData'])->name('mesa.destroy');
+});
 
-     //----------------------------------------------------------------------------------------------------------------------//
+// Subgrupo para MESEROS
+Route::middleware([CheckRole::class . ':mesero,admin'])->group(function () {
+     // Pone aca las rutas que solo podra acceder un mesero
      // Rutas de mantenimiento de Pedidos
-     //Mostar index
-     Route::get('/pedido/index', [PedidoController::class, 'getPedidos'])->name('pedido.index');
      // Ruta para mostrar el formulario de creación de pedidos
      Route::get('/pedido/crear', [PedidoController::class, 'createForm'])->name('pedido.create');
      // Ruta para procesar el envío del formulario
      Route::post('/pedido', [PedidoController::class, 'store'])->name('pedido.store');
+});
+
+// Subgrupo para COCINEROS
+Route::middleware([CheckRole::class . ':cocinero,admin'])->group(function () {
+     //Mostar index
+     Route::get('/pedido/index', [PedidoController::class, 'getPedidos'])->name('pedido.index');
      //Ruta para actualizar el estado 
      Route::patch('/pedido/update-estado/{id}', [PedidoController::class, 'updateEstado']);
-
-     // Subgrupo para MESEROS
-     Route::middleware([CheckRole::class . ':mesero'])->group(function () {
-          // Pone aca las rutas que solo podra acceder un mesero
-          // Rutas de mantenimiento de Pedidos
-          // Ruta para mostrar el formulario de creación de pedidos
-          Route::get('/pedido/crear', [PedidoController::class, 'createForm'])->name('pedido.create');
-          // Ruta para procesar el envío del formulario
-          Route::post('/pedido', [PedidoController::class, 'store'])->name('pedido.store');
-     });
-
-     // Subgrupo para COCINEROS
-     Route::middleware([CheckRole::class . ':cocinero'])->group(function () {
-          // Pone aca las rutas que solo podra acceder un cocinero
-     });
 });
 
 // Rutas de mantenimiento de usuarios
