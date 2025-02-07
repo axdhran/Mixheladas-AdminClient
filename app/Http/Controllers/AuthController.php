@@ -59,6 +59,69 @@ class AuthController extends Controller
         ]);
     }
 
+    public function showRegisterForm()
+    {
+        return view('usuario.register');
+    }
+    public function register(Request $request)
+    {
+        // Validar datos en el frontend antes de enviarlos
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'lastname' => 'required|string|max:50',
+            'phone' => 'required|digits:8',
+            'dui' => 'required|digits:9',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+            'role' => 'required|in:admin,mesero,cocinero',
+        ]);
+
+        $apiUrl = "http://127.0.0.1:8000/api/register";
+
+        try {
+            // Enviar los datos a la API usando Http::post
+            $response = Http::post($apiUrl, $request->all());
+
+            // Verificar si la API responde correctamente
+            if ($response->successful()) {
+                return redirect()->route('usuario.index')->with('success', 'Usuario registrado correctamente.');
+            }
+
+            // Si la API responde con un error, obtener el mensaje
+            $errorMessage = $response->json()['error'] ?? 'Error desconocido al registrar el usuario.';
+            return redirect()->back()->withErrors(['api_error' => $errorMessage]);
+        } catch (\Exception $e) {
+            return redirect()->route('usuario.index')->with('error', 'Error de conexión con el servidor.');
+        }
+    }
+
+
+
+    public function getUsuarios()
+    {
+        // Obtener el token de la sesión
+        $token = session('sanctum_token');
+
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Por favor, inicie sesión para continuar.');
+        }
+
+        // URL de la API
+        $apiUrl = 'http://127.0.0.1:8000/api/users';
+
+        // Solicitud a la API con autenticación
+        $response = Http::withToken($token)->get($apiUrl);
+
+        // Verifica si la respuesta es exitosa
+        if ($response->successful()) {
+            // Verifica la estructura de la respuesta
+            $users = $response->json()['usuarios'] ?? [];
+
+            return view('usuario.index', compact('users'));
+        }
+
+        return redirect()->route('login')->with('error', 'No se pudo obtener la lista de usuarios.');
+    }
 
     public function logout(Request $request)
     {

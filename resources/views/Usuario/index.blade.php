@@ -3,7 +3,8 @@
 @section('content')
 <div class="container mt-5">
     <h1 class="mb-4">Usuarios Registrados</h1>
-
+    <a href="{{ route('usuario.register') }}" class="btn btn-success">Crear Usuario</a>
+    <a href="{{ route('home') }}" class="btn btn-secondary">Volver</a>
 </hr>
     
     @if (!empty($users))

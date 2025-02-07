@@ -21,6 +21,13 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
 
      // Rutas exclusivas del admin ( aca poner todas las rutas de administracion, en pocas palabras las de mantinimiento )
      //----------------------------------------------------------------------------------------------------------------------//
+      // Rutas de mantenimiento de usuarios
+     Route::get('/usuarios', [AuthController::class, 'getUsuarios'])->name('usuario.index');
+     // Mostrar el formulario de registro
+     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('usuario.register.form');
+     // Procesar el registro de usuario
+     Route::post('/register', [AuthController::class, 'register'])->name('usuario.register');
+
      // Rutas de mantenimiento de Categorías
      //Mostar index
      Route::get('/categoria/index', [CategoriaController::class, 'getCategorias'])->name('categoria.index');
@@ -81,6 +88,3 @@ Route::middleware([CheckRole::class . ':cocinero,admin'])->group(function () {
      //Ruta para actualizar el estado 
      Route::patch('/pedido/update-estado/{id}', [PedidoController::class, 'updateEstado']);
 });
-
-// Rutas de mantenimiento de usuarios
-Route::get('/user', [HomeController::class, 'index'])->name('user');
