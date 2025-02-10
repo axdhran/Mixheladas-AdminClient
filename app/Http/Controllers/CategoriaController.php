@@ -17,7 +17,7 @@ class CategoriaController extends Controller
         // Inicializa el cliente Guzzle con el token en las cabeceras
         $this->client = new Client([
             'base_uri' => 'http://127.0.0.1:8000/api/', // URL base de la API
-            'timeout'  => 5.0, // Tiempo de espera para la solicitud
+            'timeout'  => 25.0, // Tiempo de espera para la solicitud
             'headers' => [
                 'Authorization' => 'Bearer ' . $token, // Incluye el token en las cabeceras
                 'Accept' => 'application/json',
