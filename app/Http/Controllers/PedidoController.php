@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Client; 
+use GuzzleHttp\Client;
 
 class PedidoController extends Controller
 {
@@ -30,26 +30,46 @@ class PedidoController extends Controller
     {
         try {
             // Realiza una solicitud GET a la API
-            $response = $this->client->get('pedidos'); 
+            $response = $this->client->get('pedidos');
 
             // Decodifica la respuesta JSON
             $data = json_decode($response->getBody(), true);
 
             $mesas = $data['data'] ?? [];
 
-             // Filtra los pedidos para excluir los que tienen estado 'cancelado' o 'completado'
+            // Filtra los pedidos para excluir los que tienen estado 'cancelado' o 'completado'
             $mesas = array_filter($mesas, function ($pedido) {
                 return !in_array($pedido['estado'], ['cancelado', 'completado']);
             });
 
             // Renderiza la vista y pasa los datos
             return view('pedido.index', ['data' => $mesas]);
-
         } catch (\Exception $e) {
             // Maneja errores
             return view('error', ['message' => 'Error al consumir la API: ' . $e->getMessage()]);
         }
     }
+
+    // Método para mostrar una vista con datos de la API
+    public function getAllPedidos()
+    {
+        try {
+            // Realiza una solicitud GET a la API
+            $response = $this->client->get('pedidos');
+    
+            // Decodifica la respuesta JSON
+            $data = json_decode($response->getBody(), true);
+    
+            $mesas = $data['data'] ?? [];
+    
+            // Renderiza la vista y pasa los datos sin filtrar
+            return view('pedido.todos', ['data' => $mesas]);
+        } catch (\Exception $e) {
+            // Maneja errores
+            return view('error', ['message' => 'Error al consumir la API: ' . $e->getMessage()]);
+        }
+    }    
+
 
     // Método para mostrar el formulario de creación de pedidos
     public function createForm()
@@ -58,23 +78,23 @@ class PedidoController extends Controller
             // Obtener todas las mesas desde la API
             $responseMesas = $this->client->get('mesas');
             $responseData = json_decode($responseMesas->getBody()->getContents(), true);
-    
+
             // Verifica si la respuesta tiene la clave 'data'
             if (!isset($responseData['data'])) {
                 throw new \Exception('La respuesta de la API no contiene datos de mesas.');
             }
-    
+
             $mesas = $responseData['data']; // Accede a la clave 'data'
-    
+
             // Obtener todos los productos desde la API
             $responseProductos = $this->client->get('productos');
             $productos = json_decode($responseProductos->getBody()->getContents(), true);
-    
+
             // Verifica si la respuesta de productos tiene la clave 'data'
             if (isset($productos['data'])) {
                 $productos = $productos['data']; // Accede a la clave 'data' si existe
             }
-    
+
             return view('pedido.create', compact('mesas', 'productos'));
         } catch (RequestException $e) {
             return redirect()->route('pedido.create')->with('error', 'Error al obtener los datos: ' . $e->getMessage());
@@ -111,7 +131,6 @@ class PedidoController extends Controller
 
             // Redireccionar con un mensaje de éxito
             return redirect()->route('pedido.create')->with('success', 'Pedido creado exitosamente.');
-            
         } catch (RequestException $e) {
             // Redireccionar con un mensaje de error
             return redirect()->route('pedido.create')->with('error', 'Error al crear el pedido: ' . $e->getMessage());
@@ -125,11 +144,10 @@ class PedidoController extends Controller
             $response = $this->client->patch("pedido/$id", [
                 'json' => ['estado' => $request->estado]
             ]);
-    
+
             return response()->json(['status' => 200, 'message' => 'Estado actualizado']);
         } catch (\Exception $e) {
             return response()->json(['status' => 500, 'message' => 'Error al actualizar el estado']);
         }
     }
- 
 }

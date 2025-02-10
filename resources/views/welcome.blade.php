@@ -43,6 +43,14 @@
 
     <div class="card text-center" style="width:250px; height:290px">
         <div class="card-body d-flex flex-column justify-content-between">
+            <i class="fas fa-eye fa-3x"></i>
+            <h4 class="card-title mt-3">PEDIDOS (todos)</h4>
+            <a href="{{ route('pedido.todos') }}" class="btn btn-warning">Ver Pedidos</a>
+        </div>
+    </div>
+
+    <div class="card text-center" style="width:250px; height:290px">
+        <div class="card-body d-flex flex-column justify-content-between">
             <i class="fas fa-users fa-3x"></i>
             <h4 class="card-title mt-3">USUARIOS</h4>
             <a href="{{ route('usuario.index') }}" class="btn btn-warning">Ver Usuarios</a>

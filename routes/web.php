@@ -69,6 +69,10 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
      Route::put('/mesa/update/{id}', [MesaController::class, 'updateData'])->name('mesa.update');
      // Eliminar datos
      Route::delete('/mesa/delete/{id}', [MesaController::class, 'deleteData'])->name('mesa.destroy');
+
+
+
+     Route::get('/pedidos', [PedidoController::class, 'getAllPedidos'])->name('pedido.todos');
 });
 
 // Subgrupo para MESEROS
